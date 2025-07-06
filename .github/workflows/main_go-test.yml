@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - go-test
+name: Build and deploy Go app to Azure Web App - go-test
 
 on:
   push:
@@ -18,24 +18,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Go version
+        uses: actions/setup-go@v4
         with:
-          node-version: '22.x'
+          go-version: '1.21'
 
-      - name: npm install, build, and test
+      - name: Build Go application
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          go mod download
+          go mod verify
+          GOOS=linux GOARCH=amd64 go build -o app .
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip app -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: node-app
+          name: go-app
           path: release.zip
 
   deploy:
@@ -49,7 +49,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: node-app
+          name: go-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
@@ -68,4 +68,4 @@ jobs:
           app-name: 'go-test'
           slot-name: 'Production'
           package: .
-          
+
