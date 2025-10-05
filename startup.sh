@@ -1,2 +1,2 @@
 #!/bin/bash
-./myapp
+./bin/az-go-test
