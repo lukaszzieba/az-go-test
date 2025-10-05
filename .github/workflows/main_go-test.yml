@@ -21,16 +21,16 @@ jobs:
       - name: Set up Go version
         uses: actions/setup-go@v4
         with:
-          go-version: '1.21'
+          go-version: "1.21"
 
       - name: Build Go application
         run: |
           go mod download
           go mod verify
-          GOOS=linux GOARCH=amd64 go build -o myapp .
+          make build-az
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip myapp startup.sh
+        run: zip -r release.zip bin/az-go-test startup.sh
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -53,7 +53,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -61,11 +61,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4CA5EC812E4640658C7074CA08BC97DE }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EA577B28133442A1A39DD5A5C8A46E27 }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'go-test'
-          slot-name: 'Production'
+          app-name: "go-test"
+          slot-name: "Production"
           package: .
-

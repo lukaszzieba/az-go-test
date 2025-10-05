@@ -16,6 +16,9 @@ run:
 build:
 	go build -o ./bin/az-go-test ./cmd/api/main.go
 
+build-az:
+	GOOS=linux GOARCH=amd64 go build -o ./bin/az-go-test ./cmd/api/main.go
+
 # Goose migration targets
 migration-create:
 	@read -p "Enter migration name: " name; \
