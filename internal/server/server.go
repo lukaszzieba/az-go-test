@@ -19,6 +19,7 @@ type Server struct {
 func NewServer() *http.Server {
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
 	dbUrl := os.Getenv("DB_URL")
+	fmt.Println("Connecting to database at", dbUrl)
 
 	dbQueries := NewSqlcQueries(dbUrl)
 	userService := user.NewUserService(user.NewUserStorageSqlc(dbQueries))
@@ -37,5 +38,6 @@ func NewServer() *http.Server {
 		WriteTimeout: 30 * time.Second,
 	}
 
+	fmt.Println("Server initialized on port", NewServer.port)
 	return server
 }

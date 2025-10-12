@@ -15,6 +15,7 @@ func NewSqlcQueries(dbUrl string) *db.Queries {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Println("Connected to database")
 	db := db.New(conn)
 
 	return db
