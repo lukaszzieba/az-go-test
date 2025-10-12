@@ -16,10 +16,10 @@ services:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.test-api-gbns8g.rule=Host(`api.stork-corp.xyz`)"
-      - "traefik.http.routers.test-api-gbns8g.entrypoints=websecure"
-      - "traefik.http.routers.test-api-gbns8g.tls.certResolver=letsencrypt"
-      - "traefik.http.services.test-api-gbns8g.loadbalancer.server.port=8081}"
+      - "traefik.http.routers.az-go-test-app.rule=Host(`api.stork-corp.xyz`)"
+      - "traefik.http.routers.az-go-test-app.entrypoints=websecure"
+      - "traefik.http.routers.az-go-test-app.tls.certResolver=letsencrypt"
+      - "traefik.http.services.az-go-test-app.loadbalancer.server.port=8081}"
 
 networks:
   dokploy-network:
