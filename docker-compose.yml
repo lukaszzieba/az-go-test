@@ -20,6 +20,7 @@ services:
       - "traefik.http.routers.go-api.entrypoints=websecure"
       - "traefik.http.routers.go-api.tls.certResolver=letsencrypt"
       - "traefik.http.services.go-api.loadbalancer.server.port=8081"
+      - "traefik.http.routers.go-api.service=api"
 
 networks:
   dokploy-network:
