@@ -17,6 +17,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.go-api.rule=Host(`api.stork-corp.xyz`)"
+      - "traefik.http.routers.go-api.entrypoints=websecure"
+      - "traefik.http.routers.go-api.tls.certResolver=letsencrypt"
       - "traefik.http.services.go-api.loadbalancer.server.port=8081"
 
 networks:
