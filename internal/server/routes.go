@@ -11,7 +11,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 
 	// Register routes
 	mux.HandleFunc("GET /users", s.users())
-	mux.HandleFunc("/asd", s.handler())
+	mux.HandleFunc("/", s.handler())
 
 	// Wrap the mux with CORS middleware
 	return s.corsMiddleware(mux)
