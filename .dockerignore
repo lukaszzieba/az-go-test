@@ -1,0 +1,15 @@
+bin/
+tmp/
+.git
+.gitignore
+.env*
+README.md
+*.md
+*.log
+Makefile
+.air.toml
+node_modules/
+coverage/
+*.test
+.vscode/
+.idea/

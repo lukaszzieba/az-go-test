@@ -33,3 +33,24 @@ migration-down:
 # SQLC code generation
 generate:
 	sqlc generate
+
+# Minimal Docker commands
+docker-build:
+	docker build -t az-go-test .
+
+docker-run:
+	docker run -d --name az-go-test -p 8080:8080 --env-file .env az-go-test
+
+docker-stop:
+	docker stop az-go-test && docker rm az-go-test
+
+docker-up:
+	docker-compose up -d
+
+docker-down:
+	docker-compose down
+
+docker-logs:
+	docker-compose logs -f
+
+.PHONY: docker-build docker-run docker-stop docker-up docker-down docker-logs
