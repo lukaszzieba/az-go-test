@@ -5,9 +5,9 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - 8080
+      - 8081
     environment:
-      PORT: ${PORT:-8080}
+      PORT: ${PORT:-8081}
       DB_URL: ${DB_URL}
       DB_MIGRATION_URL: ${DB_MIGRATION_URL}
     env_file:
@@ -19,7 +19,7 @@ services:
       - "traefik.http.routers.az-go-test-app.rule=Host(`api.stork-corp.xyz`)"
       - "traefik.http.routers.az-go-test-app.entrypoints=websecure"
       - "traefik.http.routers.az-go-test-app.tls.certResolver=letsencrypt"
-      - "traefik.http.services.az-go-test-app.loadbalancer.server.port=8080}"
+      - "traefik.http.services.az-go-test-app.loadbalancer.server.port=8081}"
 
 networks:
   dokploy-network:
