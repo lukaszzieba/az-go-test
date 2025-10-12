@@ -23,7 +23,7 @@ FROM scratch
 COPY --from=builder /app/bin/az-go-test /az-go-test
 
 # Expose port
-EXPOSE 8080
+EXPOSE 8081
 
 # Run application
 ENTRYPOINT ["/az-go-test"]
