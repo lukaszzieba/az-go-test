@@ -19,7 +19,7 @@ services:
       - "traefik.http.routers.az-go-test-app.rule=Host(`api.stork-corp.xyz`)"
       - "traefik.http.routers.az-go-test-app.entrypoints=websecure"
       - "traefik.http.routers.az-go-test-app.tls.certResolver=letsencrypt"
-      - "traefik.http.services.az-go-test-app.loadbalancer.server.port=8081}"
+      # - "traefik.http.services.az-go-test-app.loadbalancer.server.port=8081}"
 
 networks:
   dokploy-network:
