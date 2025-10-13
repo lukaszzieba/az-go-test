@@ -31,7 +31,17 @@ func (server *Server) users() http.HandlerFunc {
 		Email string `json:"email"`
 	}
 	return func(w http.ResponseWriter, r *http.Request) {
-		users, _ := server.userService.GetAllUsers(r.Context())
+		users, err := server.userService.GetAllUsers(r.Context())
+		if err != nil {
+			fmt.Println("Error fetching users:", err)
+			res := map[string]any{"error": err.Error()}
+			w.Header().Add("Content-Type", "application/json")
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(res)
+
+			return
+		}
+
 		fmt.Println(users)
 		res := make([]UserResponse, 0)
 		for _, u := range users {

@@ -7,7 +7,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 )
 
 const createUser = `-- name: CreateUser :one
@@ -51,7 +50,6 @@ func (q *Queries) GetAllUsers(ctx context.Context) ([]User, error) {
 	defer rows.Close()
 	var items []User
 	for rows.Next() {
-		fmt.Println("Iterating row")
 		var i User
 		if err := rows.Scan(
 			&i.ID,
