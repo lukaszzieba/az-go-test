@@ -5,18 +5,17 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/lukaszzieba/az-go-test/internal/db"
 )
 
 func NewSqlcQueries(dbUrl string) *db.Queries {
-	conn, err := pgx.Connect(context.Background(), dbUrl)
+	pool, err := pgxpool.New(context.Background(), dbUrl)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Println("Connected to database")
-	db := db.New(conn)
+	db := db.New(pool)
 
 	return db
 }
