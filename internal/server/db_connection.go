@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/lukaszzieba/az-go-test/internal/db"
+	"github.com/lukaszzieba/go-fun/internal/db"
 )
 
 func NewSqlcQueries(dbUrl string) *db.Queries {

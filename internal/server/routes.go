@@ -30,6 +30,7 @@ func (server *Server) users() http.HandlerFunc {
 		ID    string `json:"id"`
 		Email string `json:"email"`
 	}
+
 	return func(w http.ResponseWriter, r *http.Request) {
 		users, err := server.userService.GetAllUsers(r.Context())
 		if err != nil {
@@ -54,6 +55,7 @@ func (server *Server) users() http.HandlerFunc {
 		json.NewEncoder(w).Encode(res)
 	}
 }
+
 func (s *Server) corsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Set CORS headers

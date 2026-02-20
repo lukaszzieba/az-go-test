@@ -8,12 +8,12 @@ import (
 	"time"
 
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/lukaszzieba/az-go-test/internal/storage/user"
+	"github.com/lukaszzieba/go-fun/internal/storage/user"
 )
 
 type Server struct {
 	port        int
-	userService *user.UesrService
+	userService *user.UserService
 }
 
 func NewServer() *http.Server {

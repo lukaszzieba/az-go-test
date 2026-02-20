@@ -1,4 +1,4 @@
-module github.com/lukaszzieba/az-go-test
+module github.com/lukaszzieba/go-fun
 
 go 1.24.0
 

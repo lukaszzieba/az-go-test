@@ -14,10 +14,10 @@ run:
 	go run ./cmd/api
 
 build:
-	go build -o ./bin/az-go-test ./cmd/api/main.go
+	go build -o ./bin/go-fun ./cmd/api/main.go
 
 build-az:
-	GOOS=linux GOARCH=amd64 go build -o ./bin/az-go-test ./cmd/api/main.go
+	GOOS=linux GOARCH=amd64 go build -o ./bin/go-fun ./cmd/api/main.go
 
 # Goose migration targets
 migration-create:
@@ -36,13 +36,13 @@ generate:
 
 # Minimal Docker commands
 docker-build:
-	docker build -t az-go-test .
+	docker build -t go-fun .
 
 docker-run:
-	docker run -d --name az-go-test -p 8080:8080 --env-file .env az-go-test
+	docker run -d --name go-fun -p 8080:8080 --env-file .env go-fun
 
 docker-stop:
-	docker stop az-go-test && docker rm az-go-test
+	docker stop go-fun && docker rm go-fun
 
 docker-up:
 	docker-compose up -d

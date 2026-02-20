@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/lukaszzieba/az-go-test/internal/db"
+	"github.com/lukaszzieba/go-fun/internal/db"
 )
 
 type UserRepo interface {
@@ -33,18 +33,18 @@ func (s *UserRepoSql) DeleteAllUsers(ctx context.Context) error {
 	return s.queries.DeleteAllUsers(ctx)
 }
 
-type UesrService struct {
+type UserService struct {
 	repo UserRepo
 }
 
-func NewUserService(repo UserRepo) *UesrService {
-	return &UesrService{repo: repo}
+func NewUserService(repo UserRepo) *UserService {
+	return &UserService{repo: repo}
 }
 
-func (s *UesrService) CreateUser(ctx context.Context, email string) (db.User, error) {
+func (s *UserService) CreateUser(ctx context.Context, email string) (db.User, error) {
 	return s.repo.CreateUser(ctx, email)
 }
 
-func (s *UesrService) GetAllUsers(ctx context.Context) ([]db.User, error) {
+func (s *UserService) GetAllUsers(ctx context.Context) ([]db.User, error) {
 	return s.repo.GetAllUsers(ctx)
 }
