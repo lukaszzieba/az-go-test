@@ -13,17 +13,17 @@ COPY . .
 # Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build \
     -ldflags='-w -s' \
-    -o bin/az-go-test \
+    -o bin/go-fun \
     ./cmd/api/main.go
 
 # Runtime stage - scratch (ultra-minimal)
 FROM scratch
 
 # Copy binary from builder
-COPY --from=builder /app/bin/az-go-test /az-go-test
+COPY --from=builder /app/bin/go-fun /go-fun
 
 # Expose port
 EXPOSE 8081
 
 # Run application
-ENTRYPOINT ["/az-go-test"]
+ENTRYPOINT ["/go-fun"]
