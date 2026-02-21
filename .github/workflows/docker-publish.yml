@@ -35,6 +35,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-fun:${{ github.event.inputs.tag }}
+          tags: ${{ secrets.DOCKER_HUB_USER_NAME }}/go-fun:${{ github.event.inputs.tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
